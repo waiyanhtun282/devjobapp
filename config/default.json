@@ -1,3 +1,4 @@
 {
-    "mongoURL":"mongodb+srv://waiyanhtun282:2001228@cluster0.p9ddsj7.mongodb.net/?retryWrites=true&w=majority"
+  "mongoURL": "mongodb+srv://waiyanhtun282:2001228@cluster0.p9ddsj7.mongodb.net/?retryWrites=true&w=majority",
+  "jwtSecret": "mysecrettoken"
 }
