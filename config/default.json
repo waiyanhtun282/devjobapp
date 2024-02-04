@@ -1,4 +1,6 @@
 {
   "mongoURL": "mongodb+srv://waiyanhtun282:2001228@cluster0.p9ddsj7.mongodb.net/?retryWrites=true&w=majority",
-  "jwtSecret": "mysecrettoken"
+  "jwtSecret": "mysecrettoken",
+  "githubClientId":"340d1681f6f590d570ba",
+  "githubSecret":"d43fff54ae0433c4640b0dad88e2fcdced14128b"
 }
