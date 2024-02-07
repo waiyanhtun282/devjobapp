@@ -14,7 +14,7 @@ const PostSchema = new Schema ({
         type:String,
     },
     avatar:{
-        type:string
+        type:String
     },
     likes:[
         {
@@ -36,7 +36,7 @@ const PostSchema = new Schema ({
             require:true,
         },
         avatar:{
-            type:string,
+            type:String,
         },
         date:{
             type:Date,
@@ -51,4 +51,6 @@ const PostSchema = new Schema ({
     }
 
 
-})
+});
+
+module.exports=Post =mongoose.model('post',PostSchema)
