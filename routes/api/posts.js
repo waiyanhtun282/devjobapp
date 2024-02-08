@@ -143,4 +143,69 @@ router.put('/unlike/:id',auth,async(req,res) =>{
     res.status(500).send('Server Error!')
   }
 })
+
+
+// @route     POST api/posts/comment/:id
+// @desc      Comment  Post  
+// @acess     Private
+router.post('/comment/:id',[
+    auth,[
+        check('text','Text is requires').not().isEmpty()
+    ]
+], async (req,res) => {
+  const error = await validationResult(req);
+ if(!error.isEmpty()) {
+    return res.status(400).json({error:error.array()});
+ };
+
+ try {
+    const user = await User.findById(req.user.id).select('-password');
+    const post = await Post.findById(req.params.id)
+    const newComment =new Post({
+        text:req.body.text,
+        name:user.name,
+        avatar:user.avatar,
+        user:req.user.id
+    });
+    post.comment.unshift(newComment)
+     await post.save();
+    res.json(post.comment)
+ } catch (error) {
+    console.error(error.message);
+    return res.status(500).send('Server Errror!')
+ }
+})
+// @route     POST api/posts/comment/:id/:comment_id
+// @desc     Delete   Post  Comment
+// @acess     Private
+router.delete('/comment/:id/:comment_id',auth,async(req,res) =>{
+ try {
+  
+    const post  = await Post.findById(req.params.id);
+//  pull out comment
+const comment = post.comment.find(comment => comment.id === req.params.comment_id);
+
+// Check comment
+ if(!comment) {
+  return res.status(400).json({msg:"Comment does not exits!"});
+ }
+
+// Checek USer 
+
+   if(comment.user.toString() !== req.user.id) {
+      return res.status(401).json({msg:'User is not unrothrized!'})
+    }
+
+    // Get Remove index
+    const removeIndex = post.comment.map(comment => comment.user.toString()).indexOf(req.user.id);
+    post.comment.splice(removeIndex,1);
+    await post.save();
+
+    res.json(post.comment)
+
+ } catch (error) {
+   console.error(error.message);
+   res.status(500).send("Server Error!")
+ }
+})
 module.exports=router;
