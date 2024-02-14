@@ -4,7 +4,7 @@ const config = require('config');
 const { validationResult } = require('express-validator');
 const  User =require('../models/Users');
 
-const postRegisterUsers =async (req, res) => {
+ exports.postRegisterUsers =async (req, res) => {
     // console.log(req.body);
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
@@ -63,6 +63,3 @@ const postRegisterUsers =async (req, res) => {
     }
   }
 
-module.exports ={
-postRegisterUsers
-}

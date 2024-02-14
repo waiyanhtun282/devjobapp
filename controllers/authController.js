@@ -1,8 +1,9 @@
-const  Users =require('../models/Users');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const config = require('config');
 const { validationResult } = require('express-validator');
+const  Users =require('../models/Users');
+
 // for get auth
 const getAuthUsers = async (req, res) => {
   try {
