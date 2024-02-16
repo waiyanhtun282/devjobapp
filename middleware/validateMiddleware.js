@@ -33,13 +33,21 @@ const validateCreateUpdateProfile =
       check("from", "from is required!").not().isEmpty(),
     ];
 
+const  validatePostMiddleware =[
+        check('text','Text is requires').not().isEmpty()
+    ];
 
+    const validatePostCommentMiddleware =[
+        check('text','Text is requires').not().isEmpty()
+    ];
 module.exports ={
   validateLoginInput,
   validateRegisterInput,
   validateCreateUpdateProfile,
   validateProfileExperience,
-  validateProfileEducation
+  validateProfileEducation,
+  validatePostMiddleware,
+  validatePostCommentMiddleware
 }
 
 
